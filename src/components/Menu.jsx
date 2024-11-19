@@ -32,12 +32,12 @@ const Menu = () => {
     {
       title: "MENU",
       items: [
-        // {
-        //   icon: "/home.png",
-        //   label: "Home",
-        //   href: "/",
-        //   visible: ["admin", "teacher", "student", "parent"],
-        // },
+        {
+          icon: "/home.png",
+          label: "Home",
+          href: "/",
+          visible: ["admin", "teacher", "student", "parent", "super_admin"],
+        },
         {
           icon: "/teacher.png",
           label: "Teachers",
@@ -56,12 +56,12 @@ const Menu = () => {
           href: "/list/parents",
           visible: ["admin", "teacher", "super_admin"],
         },
-        // {
-        //   icon: "/subject.png",
-        //   label: "Subjects",
-        //   href: "/list/subjects",
-        //   visible: ["admin"],
-        // },
+        {
+          icon: "/subject.png",
+          label: "Subjects",
+          href: "/list/subjects",
+          visible: ["admin"],
+        },
         {
           icon: "/class.png",
           label: "Classes",
@@ -80,24 +80,24 @@ const Menu = () => {
         //   href: "/list/lessons",
         //   visible: ["admin", "teacher"],
         // },
-        // {
-        //   icon: "/exam.png",
-        //   label: "Exams",
-        //   href: "/list/exams",
-        //   visible: ["admin", "teacher", "student", "parent"],
-        // },
-        // {
-        //   icon: "/assignment.png",
-        //   label: "Diary",
-        //   href: "/list/diary",
-        //   visible: ["admin", "teacher", "student", "parent", "super_admin"],
-        // },
-        // {
-        //   icon: "/result.png",
-        //   label: "Results",
-        //   href: "/list/results",
-        //   visible: ["admin", "teacher", "student", "parent"],
-        // },
+        {
+          icon: "/exam.png",
+          label: "Exams",
+          href: "/list/exams",
+          visible: ["admin", "teacher", "student", "parent", "super_admin"],
+        },
+        {
+          icon: "/assignment.png",
+          label: "Diary",
+          href: "/list/diary",
+          visible: ["admin", "teacher", "student", "parent", "super_admin"],
+        },
+        {
+          icon: "/result.png",
+          label: "Results",
+          href: "/list/results",
+          visible: ["admin", "teacher", "student", "parent", "super_admin"],
+        },
         {
           icon: "/attendance.png",
           label: "Attendance",
@@ -112,12 +112,6 @@ const Menu = () => {
         //   visible: ["admin", "teacher", "student", "parent"],
         // },
 
-        {
-          icon: FaRegFileAlt,
-          label: "Diary",
-          href: "/list/diary",
-          visible: ["admin", "teacher", "super_admin"],
-        },
         {
           icon: FaRegFileAlt,
           label: "Test Editor",

@@ -27,25 +27,32 @@ const Attendance = ({}) => {
   const [students, setStudents] = useState([]);
   const [selectedClass, setSelectedClass] = useState("");
   const [selectedSection, setSelectedSection] = useState("");
+  const [isLoadingSection, setIsLoadingSection] = useState(false);
+  const [isLoadingStudents, setIsLoadingStudents] = useState(false);
+  const [isLoadingClasses, setIsLoadingClasses] = useState(false);
 
   const fetchSection = async (c_id) => {
+    setIsLoadingSection(true);
     try {
       const res = await api.get(`/sections/?class_id=${c_id}`);
       setSection(res.data.data);
-      console.log(section);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoadingSection(false);
     }
   };
   useEffect(() => {
     const fetchClasses = async () => {
+      setIsLoadingClasses(true);
       try {
         const response = await api.get(`/classes`);
         setClassesData(response.data);
       } catch (error) {
         console.error("Error fetching classes:", error);
+      } finally {
+        setIsLoadingClasses(false);
       }
-      console.log(classesData);
     };
     fetchClasses();
   }, []);
@@ -63,6 +70,7 @@ const Attendance = ({}) => {
 
   const handleSectionChange = (e) => {
     console.log(e.target.value);
+    setIsLoadingStudents(true);
 
     const fetchStudents = async () => {
       try {
@@ -70,6 +78,8 @@ const Attendance = ({}) => {
         setStudents(res.data.data.listing);
       } catch (error) {
         console.error("Error fetching students:", error);
+      } finally {
+        setIsLoadingStudents(false);
       }
     };
     fetchStudents();
@@ -174,8 +184,11 @@ const Attendance = ({}) => {
               className="lg:w-[200px] w-full p-2 bg-transparent active:outline-none outline-none"
               value={selectedClass}
               onChange={handleClassChange}
+              disabled={isLoadingClasses}
             >
-              <option value="">Select Class</option>
+              <option value="">
+                {isLoadingClasses ? "Loading..." : "Select Class"}
+              </option>
               {classesData.data?.map((classItem) => (
                 <option key={classItem.id} value={classItem.id}>
                   {classItem.name}
@@ -189,8 +202,11 @@ const Attendance = ({}) => {
               className="lg:w-[200px] w-full p-2 bg-transparent active:outline-none outline-none"
               value={selectedSection}
               onChange={handleSectionChange}
+              disabled={isLoadingSection}
             >
-              <option value="">Select Section</option>
+              <option value="">
+                {isLoadingSection ? "Loading..." : "Select Section"}
+              </option>
               {section?.map((sectionItem) => (
                 <option key={sectionItem.id} value={sectionItem.id}>
                   {sectionItem.name}
