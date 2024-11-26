@@ -14,8 +14,11 @@ import api from "../components/axios";
 
 const Menu = () => {
   const router = useRouter();
+  let rl;
   const { role, setIsLogin } = useUserStore();
-
+  if (role === "super_admin") {
+    rl = "super-admin";
+  }
   const handleLogout = async () => {
     try {
       const response = await api.post("/auth/signout");
@@ -47,50 +50,50 @@ const Menu = () => {
         {
           icon: LuSchool,
           label: "Schools",
-          href: "/list/schools",
+          href: `/${rl}/schools`,
           visible: ["super_admin"],
         },
         {
           icon: GrUserAdmin,
           label: "Admin",
-          href: "/list/admins",
+          href: `/${rl}/admins`,
           visible: ["super_admin"],
         },
 
         {
           icon: "/teacher.png",
           label: "Teachers",
-          href: "/list/teachers",
+          href: `/${role}/teachers`,
           visible: ["admin", "teacher", "super_admin"],
         },
         {
           icon: "/student.png",
           label: "Students",
-          href: "/list/students",
+          href: `/${role}/students`,
           visible: ["admin", "teacher", "super_admin"],
         },
         {
           icon: "/parent.png",
           label: "Parents",
-          href: "/list/parents",
+          href: `/${role}/parents`,
           visible: ["admin", "teacher", "super_admin"],
         },
         {
           icon: "/subject.png",
           label: "Subjects",
-          href: "/list/subjects",
+          href: `/${role}/subjects`,
           visible: ["admin"],
         },
         {
           icon: "/class.png",
           label: "Classes",
-          href: "/list/classes",
+          href: `/${role}/classes`,
           visible: ["admin", "teacher", "super_admin"],
         },
         {
           icon: "/class.png",
           label: "Section",
-          href: "/list/section",
+          href: `/${role}/sections`,
           visible: ["admin", "teacher", "super_admin"],
         },
         // {
@@ -108,19 +111,20 @@ const Menu = () => {
         {
           icon: "/assignment.png",
           label: "Diary",
-          href: "/list/diary",
+          href: `/${role}/diary`,
           visible: ["admin", "teacher", "student", "parent", "super_admin"],
         },
         {
           icon: "/result.png",
           label: "Results",
-          href: "/list/results",
+          
+          href: `/${role}/results`,
           visible: ["admin", "teacher", "student", "parent", "super_admin"],
         },
         {
           icon: "/attendance.png",
           label: "Attendance",
-          href: "/list/attendance-report",
+          href: `/${role}/attendance-report`,
           visible: ["admin", "teacher", "super_admin"],
         },
 
@@ -134,13 +138,13 @@ const Menu = () => {
         {
           icon: FaRegFileAlt,
           label: "Test Editor",
-          href: "/list/Editor",
+          href: `/${role}/Editor`,
           visible: ["admin", "teacher", "super_admin"],
         },
         {
           icon: CiImageOn,
           label: "Post",
-          href: "/list/post",
+          href: `/${role}/post`,
           visible: ["admin", "teacher", "super_admin"],
         },
 

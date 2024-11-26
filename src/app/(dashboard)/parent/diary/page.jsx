@@ -5,12 +5,11 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Table from "../../../../components/Table";
 import FormModal from "../../../../components/FormModal";
-// import { useRouter } from "next/navigation";
+
 import { useUserStore } from "../../../../store/useUserStore";
 import { toast } from "react-toastify";
-import DiaryForm from "../../../../components/forms/DiaryForm";
 import Image from "next/image";
-import Pagination from "../../../../components/Pagination";
+import Pagination from '../../../../components/Pagination';
 
 const page = () => {
   const { role } = useUserStore();
@@ -62,7 +61,7 @@ const page = () => {
     >
       <td className="flex items-center gap-4 p-4">{item.subject}</td>
       <td className="hidden md:table-cell">{item.submission_date}</td>
-      <td 
+      <td
         className="hidden md:table-cell"
         dangerouslySetInnerHTML={{ __html: item.homework }}
       />
@@ -155,59 +154,61 @@ const page = () => {
     }
   };
 
-  if (role !== "student") {
-    return (
-      <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
-        <div className="flex items-center justify-between">
-          <h1 className="hidden md:block text-lg font-semibold">
-            Diary Entries
-          </h1>
-          <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-            <div className="w-full md:w-auto flex items-center gap-2 text-xs rounded-full ring-[1.5px] ring-gray-300 px-2">
-              <Image src="/search.png" alt="" width={14} height={14} />
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-[200px] p-2 bg-transparent outline-none"
-                onChange={(e) => fetchDiary(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center gap-4 self-end">
-              <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-                <Image src="/filter.png" alt="" width={14} height={14} />
-              </button>
-              <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-                <Image src="/sort.png" alt="" width={14} height={14} />
-              </button>
-              {role === "admin" ||
-                (role === "super_admin" && (
-                  <FormModal table="diary" type="create" />
-                ))}
-            </div>
-          </div>
-        </div>
+  // if (role !== "student") {
+  //   return (
+  //     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
+  //       <div className="flex items-center justify-between">
+  //         <h1 className="hidden md:block text-lg font-semibold">
+  //           Diary Entries
+  //         </h1>
+  //         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
+  //           <div className="w-full md:w-auto flex items-center gap-2 text-xs rounded-full ring-[1.5px] ring-gray-300 px-2">
+  //             <Image src="/search.png" alt="" width={14} height={14} />
+  //             <input
+  //               type="text"
+  //               placeholder="Search..."
+  //               className="w-[200px] p-2 bg-transparent outline-none"
+  //               onChange={(e) => fetchDiary(e.target.value)}
+  //             />
+  //           </div>
+  //           <div className="flex items-center gap-4 self-end">
+  //             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
+  //               <Image src="/filter.png" alt="" width={14} height={14} />
+  //             </button>
+  //             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
+  //               <Image src="/sort.png" alt="" width={14} height={14} />
+  //             </button>
+  //             {role === "admin" ||
+  //               (role === "super_admin" && (
+  //                 <FormModal table="diary" type="create" />
+  //               ))}
+  //           </div>
+  //         </div>
+  //       </div>
 
-        <Table columns={columns} renderRow={renderRow} data={diary} />
+  //       <Table columns={columns} renderRow={renderRow} data={diary} />
 
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
-      </div>
-    );
-  } else {
-    return (
-      <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
-        <Table columns={columns} renderRow={renderRow} data={diary} />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
-      </div>
-    );
-  }
+  //       <Pagination
+  //         currentPage={currentPage}
+  //         totalPages={totalPages}
+  //         onPageChange={setCurrentPage}
+  //       />
+  //     </div>
+  //   );
+  // } else {
+  //   return (
+  //     <div className="bg-white p-4 rounded-md flex-1 m-4 mt-0">
+  //       <Table columns={columns} renderRow={renderRow} data={diary} />
+  //       <Pagination
+  //         currentPage={currentPage}
+  //         totalPages={totalPages}
+  //         onPageChange={setCurrentPage}
+  //       />
+  //     </div>
+  //   );
+  // }
+
+  return <>Parent Diary</>
 };
 
 export default page;
